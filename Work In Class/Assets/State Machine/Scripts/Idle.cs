@@ -19,7 +19,6 @@ public class Idle : State
     public override void Crouch(CharacterController charController)
     {
         Debug.Log("Player is Ducking");
-
         charController.CurrentState = new Ducking();
     }
 

@@ -31,7 +31,12 @@ public class Jumping : State
 
     public override void Jump(CharacterController charController)
     {
-        Debug.Log("Player is Jumping");
-        charController.CurrentState = new Jumping();
+        if (charController.IsGrounded)
+        {
+            charController.IsGrounded = false;
+            charController.AirTimeCounter = 1;
+            Debug.Log("Player is Jumping");
+            charController.CurrentState = new Jumping();
+        }
     }
 }

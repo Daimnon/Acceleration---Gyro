@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateFlow
+public class StateFlow : MonoBehaviour
 {
     CharacterController _charController = new CharacterController(new Idle());
 
@@ -15,10 +15,9 @@ public class StateFlow
             if (Input.GetKeyUp(KeyCode.DownArrow))
                 _charController.StandRequest();
         }
-
-        if (Input.GetKeyDown(KeyCode.B))
+        else if (Input.GetKeyDown(KeyCode.B))
         {
-            _charController.JumpRequest();
+            _charController.JumpRequest(_charController.IsGrounded);
 
             if (Input.GetKeyDown(KeyCode.DownArrow))
             {
