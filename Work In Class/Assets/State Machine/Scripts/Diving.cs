@@ -1,37 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Diving : State
 {
-    public override void Stand(CharacterController charController)
+    public override void PlayLogic(CharacterController charController)
     {
-        Debug.Log("Player is Idle");
-        charController.CurrentState = new Idle();
-    }
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
+        {
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+            {
+                Debug.Log("Player is moving while Diving");
+            }
+        }
 
-    public override void Move(CharacterController charController)
-    {
-        Debug.Log("Player is Walking");
-        charController.CurrentState = new Walking();
-    }
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            Debug.Log("Player stopped Diving and is now Idle");
+            charController.CurrentState = new Idle();
+        }
 
-    public override void Crouch(CharacterController charController)
-    {
-        Debug.Log("Player is Ducking");
-
-        charController.CurrentState = new Ducking();
-    }
-
-    public override void Dive(CharacterController charController)
-    {
-        Debug.Log("Player is Diving");
-        charController.CurrentState = new Diving();
-    }
-
-    public override void Jump(CharacterController charController)
-    {
-        Debug.Log("Player is Jumping");
-        charController.CurrentState = new Jumping();
+        else
+            Debug.Log("Player is still Diving");
     }
 }
